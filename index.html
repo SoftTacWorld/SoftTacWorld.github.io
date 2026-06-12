@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoftTacWorld — Visuo-Tactile Robot Manipulation Challenge</title>
+  <meta name="description" content="SoftTacWorld: A benchmark challenge for evaluating contact-aware robot manipulation with vision and tactile sensing.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="nav-container">
+      <a class="nav-brand" href="#top">SoftTacWorld</a>
+      <button class="nav-toggle" aria-label="menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-menu">
+        <a class="nav-link" href="#overview">Overview</a>
+        <a class="nav-link" href="#tasks">Tasks</a>
+        <a class="nav-link" href="#dataset">Dataset</a>
+        <a class="nav-link" href="#timeline">Timeline</a>
+        <a class="nav-link" href="#rules">Rules</a>
+        <a class="nav-link" href="#submission">Submission</a>
+        <a class="nav-link" href="#leaderboard">Leaderboard</a>
+        <a class="nav-link" href="#organizers">Organizers</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Workshop</div>
+      <h1 class="hero-title">SoftTacWorld</h1>
+      <p class="hero-tagline">Visuo-Tactile Robot Manipulation Challenge</p>
+      <p class="hero-subtitle">Evaluating contact-aware manipulation beyond visual success</p>
+      <div class="hero-info-cards">
+        <div class="info-card">
+          <span class="info-icon">📅</span>
+          <span class="info-label">Date</span>
+          <span class="info-value">Sept 2026</span>
+        </div>
+        <div class="info-card">
+          <span class="info-icon">📍</span>
+          <span class="info-label">Location</span>
+          <span class="info-value">TBD</span>
+        </div>
+        <div class="info-card">
+          <span class="info-icon">🏆</span>
+          <span class="info-label">Awards</span>
+          <span class="info-value">$X,000</span>
+        </div>
+        <div class="info-card">
+          <span class="info-icon">🤖</span>
+          <span class="info-label">Modalities</span>
+          <span class="info-value">Vision + Tactile</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="#submission" class="btn btn-primary">Submit Results</a>
+        <a href="https://github.com/" class="btn btn-outline">GitHub</a>
+        <a href="#dataset" class="btn btn-outline">Download Data</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ===== Overview ===== -->
+    <section class="section" id="overview">
+      <div class="container reveal">
+        <h2 class="section-title">Challenge Overview</h2>
+        <p class="section-lead">Can your policy achieve not just task success, but safe and contact-aware manipulation?</p>
+        <div class="overview-grid">
+          <div class="overview-text">
+            <p>
+              SoftTacWorld evaluates robot manipulation policies beyond simple visual task completion.
+              We measure whether the contact process is valid and safety-aware under tactile-grounded criteria.
+            </p>
+            <p>
+              Unlike existing benchmarks that only check final goal states, our hierarchical metrics
+              decompose success into three nested levels — ensuring that a "successful" grasp is also
+              contact-valid and force-safe.
+            </p>
+            <div class="callout-box">
+              safe_success ⊆ contact_success ⊆ goal_success
+            </div>
+          </div>
+          <div class="overview-figure">
+            <div class="placeholder-img">Overview diagram placeholder</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Tasks ===== -->
+    <section class="section section-alt" id="tasks">
+      <div class="container reveal">
+        <h2 class="section-title">Challenge Tasks</h2>
+        <p class="section-lead">Four manipulation tasks with increasing tactile complexity.</p>
+        <div class="task-grid">
+          <div class="task-card">
+            <div class="task-card-header">
+              <span class="task-id">T0</span>
+              <h3>Rigid Object to Tray</h3>
+            </div>
+            <div class="placeholder-img task-img" style="margin:0.75rem 1.25rem;min-height:120px;">T0 image</div>
+            <p>Rigid negative control. Tactile gain should be minimal — tests baseline visual-only performance.</p>
+            <span class="task-tag">Baseline</span>
+          </div>
+          <div class="task-card">
+            <div class="task-card-header">
+              <span class="task-id">T1</span>
+              <h3>Soft Object Grasping</h3>
+            </div>
+            <div class="placeholder-img task-img" style="margin:0.75rem 1.25rem;min-height:120px;">T1 image</div>
+            <p>Deformable object pick-and-place. Requires force regulation to avoid excessive compression.</p>
+            <span class="task-tag">Deformable</span>
+          </div>
+          <div class="task-card">
+            <div class="task-card-header">
+              <span class="task-id">T2</span>
+              <h3>Fragile Object Transfer</h3>
+            </div>
+            <div class="placeholder-img task-img" style="margin:0.75rem 1.25rem;min-height:120px;">T2 image</div>
+            <p>Fragile items requiring careful grip force. Tactile feedback is critical to prevent damage.</p>
+            <span class="task-tag">Fragile</span>
+          </div>
+          <div class="task-card">
+            <div class="task-card-header">
+              <span class="task-id">T3</span>
+              <h3>Contact-Rich Assembly</h3>
+            </div>
+            <div class="placeholder-img task-img" style="margin:0.75rem 1.25rem;min-height:120px;">T3 image</div>
+            <p>Multi-step assembly requiring sustained contact awareness and slip detection throughout.</p>
+            <span class="task-tag">Assembly</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Dataset ===== -->
+    <section class="section" id="dataset">
+      <div class="container reveal">
+        <h2 class="section-title">Dataset</h2>
+        <p class="section-lead">Multi-modal demonstrations with vision and tactile observations.</p>
+        <div class="dataset-stats">
+          <div class="stat-card">
+            <span class="stat-num">800+</span>
+            <span class="stat-label">Episodes</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Tasks</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Modalities</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Metrics</span>
+          </div>
+        </div>
+        <div class="dataset-details">
+          <h3>Data Format</h3>
+          <p>
+            Each episode contains synchronized RGB images, tactile sensor readings (GelSight/DIGIT),
+            and proprioceptive state. Data is stored in HDF5 format with consistent observation keys
+            across all tasks.
+          </p>
+          <div class="download-links">
+            <a href="#" class="btn btn-primary">Download Training Set</a>
+            <a href="#" class="btn btn-outline">Download Evaluation Set</a>
+            <a href="#" class="btn btn-outline">Starter Kit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Timeline ===== -->
+    <section class="section section-alt" id="timeline">
+      <div class="container reveal">
+        <h2 class="section-title">Important Dates</h2>
+        <p class="section-lead">All deadlines are at 23:59 AoE (Anywhere on Earth).</p>
+        <div class="timeline">
+          <div class="timeline-item is-current">
+            <div class="timeline-date">Jul 1, 2026</div>
+            <div class="timeline-content">
+              <h4>Challenge Opens</h4>
+              <p>Dataset release and starter kit available</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Aug 1, 2026</div>
+            <div class="timeline-content">
+              <h4>Validation Phase</h4>
+              <p>Validation server opens for test submissions</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Aug 20, 2026</div>
+            <div class="timeline-content">
+              <h4>Final Submission Deadline</h4>
+              <p>Last day to submit results on the test set</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Aug 25, 2026</div>
+            <div class="timeline-content">
+              <h4>Winners Announced</h4>
+              <p>Top teams notified and leaderboard frozen</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">Sept 2026</div>
+            <div class="timeline-content">
+              <h4>Workshop Day</h4>
+              <p>Presentations and award ceremony at ECCV 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Rules ===== -->
+    <section class="section" id="rules">
+      <div class="container reveal">
+        <h2 class="section-title">Rules & Evaluation</h2>
+        <p class="section-lead">Hierarchical metrics that go beyond binary task success.</p>
+        <div class="rules-grid">
+          <div class="rule-card">
+            <h3>Evaluation Metrics</h3>
+            <table class="metrics-table">
+              <thead>
+                <tr><th>Metric</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>goal_success</code></td>
+                  <td>Task goal achieved and scene state valid</td>
+                </tr>
+                <tr>
+                  <td><code>contact_success</code></td>
+                  <td>+ tactile contact detected and valid throughout</td>
+                </tr>
+                <tr>
+                  <td><code>safe_success</code></td>
+                  <td>+ compression within threshold, no slip or drop</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="rule-card">
+            <h3>Participation Rules</h3>
+            <ul>
+              <li>Open to all researchers (academic & industry)</li>
+              <li>Teams may use any learning method</li>
+              <li>External data allowed if declared</li>
+              <li>Maximum 5 submissions per day</li>
+              <li>Top teams must release code for verification</li>
+              <li>Results reproducible on provided environment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Submission ===== -->
+    <section class="section section-alt" id="submission">
+      <div class="container reveal">
+        <h2 class="section-title">How to Submit</h2>
+        <p class="section-lead">Follow these steps to participate in the challenge.</p>
+        <div class="submission-steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <h4>Register</h4>
+            <p>Create an account on our submission portal and register your team.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <h4>Download Data</h4>
+            <p>Get the training set, starter kit, and evaluation scripts from the dataset section.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <h4>Train & Evaluate</h4>
+            <p>Train your policy and run local evaluation using our provided metrics scripts.</p>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <h4>Submit</h4>
+            <p>Upload predictions to the evaluation server. Results appear on the leaderboard.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Leaderboard ===== -->
+    <section class="section" id="leaderboard">
+      <div class="container reveal">
+        <h2 class="section-title">Leaderboard</h2>
+        <p class="section-lead">Results will be posted here after the challenge opens.</p>
+        <div class="leaderboard-tabs">
+          <button class="tab active" data-tab="overall">Overall</button>
+          <button class="tab" data-tab="t0">T0</button>
+          <button class="tab" data-tab="t1">T1</button>
+          <button class="tab" data-tab="t2">T2</button>
+          <button class="tab" data-tab="t3">T3</button>
+        </div>
+        <div class="table-container">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Method</th>
+                <th>goal_success ↑</th>
+                <th>contact_success ↑</th>
+                <th>safe_success ↑</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+                <td>XXX</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Organizers ===== -->
+    <section class="section section-alt" id="organizers">
+      <div class="container reveal">
+        <h2 class="section-title">Organizers</h2>
+        <div class="organizer-grid">
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University A</p>
+          </div>
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University B</p>
+          </div>
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University C</p>
+          </div>
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 4" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University D</p>
+          </div>
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 5" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University E</p>
+          </div>
+          <div class="organizer-card">
+            <img src="assets/images/organizers/placeholder.jpg" alt="Organizer 6" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23e8f4f7%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%230f6e84%22 font-size=%2232%22>👤</text></svg>'">
+            <h4><a href="#">Name Surname</a></h4>
+            <p class="affiliation">University F</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Sponsors ===== -->
+    <section class="section" id="sponsors">
+      <div class="container reveal">
+        <h2 class="section-title">Sponsors & Partners</h2>
+        <div class="sponsor-grid">
+          <a href="#" class="sponsor-logo">
+            <img src="assets/images/sponsors/placeholder.png" alt="Sponsor 1" onerror="this.parentElement.innerHTML='<span style=&quot;color:var(--color-text-soft);font-size:0.85rem;&quot;>Sponsor Logo</span>'">
+          </a>
+          <a href="#" class="sponsor-logo">
+            <img src="assets/images/sponsors/placeholder.png" alt="Sponsor 2" onerror="this.parentElement.innerHTML='<span style=&quot;color:var(--color-text-soft);font-size:0.85rem;&quot;>Sponsor Logo</span>'">
+          </a>
+          <a href="#" class="sponsor-logo">
+            <img src="assets/images/sponsors/placeholder.png" alt="Sponsor 3" onerror="this.parentElement.innerHTML='<span style=&quot;color:var(--color-text-soft);font-size:0.85rem;&quot;>Sponsor Logo</span>'">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact / FAQ ===== -->
+    <section class="section section-alt" id="contact">
+      <div class="container reveal">
+        <h2 class="section-title">Contact & FAQ</h2>
+        <div class="contact-grid">
+          <div class="faq">
+            <details>
+              <summary>Can I use external training data?</summary>
+              <p>Yes, but you must declare all external data sources in your submission. Pre-trained visual encoders (e.g., ImageNet, CLIP) are allowed.</p>
+            </details>
+            <details>
+              <summary>What tactile sensors are supported?</summary>
+              <p>The dataset includes GelSight and DIGIT sensor data. Methods are evaluated on both sensor types. You may also propose sim-to-real transfer approaches.</p>
+            </details>
+            <details>
+              <summary>Can I participate as an individual?</summary>
+              <p>Yes. Teams of any size (including 1) are welcome. Each participant may only be on one team.</p>
+            </details>
+            <details>
+              <summary>How is the final ranking determined?</summary>
+              <p>Teams are ranked by <code>safe_success</code> averaged across all tasks. In case of ties, <code>contact_success</code> is used as the tiebreaker.</p>
+            </details>
+            <details>
+              <summary>Will there be awards?</summary>
+              <p>Yes. Cash prizes and certificates will be awarded to top-3 teams. Details will be announced closer to the deadline.</p>
+            </details>
+          </div>
+          <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p>📧 Email: <a href="mailto:softtacworld@gmail.com">softtacworld@gmail.com</a></p>
+            <p>💬 GitHub: <a href="https://github.com/">Issues & Discussions</a></p>
+            <p>🐦 Twitter: <a href="https://twitter.com/">@SoftTacWorld</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer-logos">
+      <img src="assets/images/sponsors/shenpu-logo.png" alt="深朴研究院" class="footer-logo">
+      <span class="footer-logo-divider">×</span>
+      <img src="assets/images/sponsors/tuojing-logo.png" alt="拓境" class="footer-logo">
+    </div>
+    <p class="footer-label">深朴 · 拓境 联合研发中心</p>
+    <p>&copy; 2026 SoftTacWorld Challenge. All rights reserved.</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
